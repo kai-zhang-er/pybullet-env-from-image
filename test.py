@@ -20,8 +20,9 @@ def filter_out_small_rectangles(rectangles):
         filtered_result.append(rect)
     return filtered_result
 
-def save_to_txt(rectangles):
+def save_to_txt(rectangles, img):
     f=open("rect.txt","w")
+    f.write("{},{}\r".format(img.shape[0]/2, img.shape[1]/2))
     for rect in rectangles:
         length=abs(rect.x1-rect.x2)
         height=abs(rect.y1-rect.y2)
@@ -36,6 +37,7 @@ kernel=np.ones((5,5), np.uint8)
 img_dilate=cv2.dilate(img, kernel, iterations=1)
 img=cv2.erode(img_dilate, kernel, iterations=1)
 
+print("image shape {}x{}".format(img.shape[0], img.shape[1]))
 
 # cv2.imshow("img", img_dilate*255)
 # cv2.imshow("img2", img_erosion*255)
@@ -51,5 +53,5 @@ filtered_rectangles=filter_out_small_rectangles(rectangles)
 print('number of rectangles found: {}'.format(len(filtered_rectangles)))
 plot_rectangles(filtered_rectangles,2)
 plt.show()
-save_to_txt(rectangles)
+save_to_txt(filtered_rectangles, img)
 

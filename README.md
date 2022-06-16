@@ -8,6 +8,11 @@ change the image path in `test.py` and filter threshold to generate satisfied nu
 ```python
 python test.py
 ```
+With the generated `rect.txt`, run 
+```python
+python generate_env_from_txt.py
+```
+to build the pybullet 3D environment. Adjust the camera position and view angle to find the suitable view.
 
 # Result
 ## input image
@@ -16,6 +21,8 @@ python test.py
 ## output rectangle
 <img src="./rect_result.png" alt="sample1">
 
+## pybullet env
+<img src="./pybullet_env_result.png" alt="sample1">
 
 # to do list
 - decompose rectangles from binary image
